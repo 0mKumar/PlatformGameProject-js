@@ -3,6 +3,12 @@ let gravity;  // gravity vector for the world
 let runSpeed = 4;  // of character when LEFT or RIGHT is pressed
 let jumpSpeed = 15; // of character
 
+let bgImg;
+
+function preload(){
+  bgImg = loadImage("images/background.png");
+}
+
 function setup() {
   createCanvas(700, 400); // size of canvas (viewport of game)
   pos = createVector(100, height - 200);
@@ -12,7 +18,7 @@ function setup() {
 
 function draw() {
   update();
-  background(220);
+  background(bgImg);
   ellipse(pos.x, pos.y, 30,30);
 }
 
@@ -24,7 +30,7 @@ function update(){
     vel.y = 0;
     pos.y = height - 15;
   }
-  
+
   // controls
   if(keyIsDown(LEFT_ARROW)){
     vel.x = -runSpeed;
@@ -37,7 +43,7 @@ function keyPressed(){
   switch(key){
     // jump when UP or SPACE is pressed on keyboard
     case "ArrowUp":
-    case " ": 
+    case " ":
       if(vel.y != 0) break;
       vel.y -= jumpSpeed;
       break;
